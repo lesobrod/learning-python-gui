@@ -1,70 +1,62 @@
 # Import Meteostat library and dependencies
 from datetime import datetime
-from tkinter import *
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import matplotlib.pyplot as plt
+import tkinter
 from meteostat import Point, Daily
 
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg, NavigationToolbar2Tk)
+# Implement the default Matplotlib key bindings.
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
 
-def plot():
-    # the figure that will contain the plot
-    fig = Figure(figsize=(5, 5),
-                 dpi=100)
 
-    # list of squares
-    y = [i ** 2 for i in range(101)]
+def get_data() -> list:
+    # Set time period
+    start = datetime(2018, 1, 1)
+    end = datetime(2018, 12, 31)
 
-    # adding the subplot
-    plot1 = fig.add_subplot(111)
+    # Create Point for Vancouver, BC
+    vancouver = Point(49.2497, -123.1193, 70)
 
-    # plotting the graph
-    plot1.plot(y)
+    # Get daily data for 2018
+    data = Daily(vancouver, start, end)
+    return data.fetch()
+    print(data)
 
-    # creating the Tkinter canvas
-    # containing the Matplotlib figure
-    canvas = FigureCanvasTkAgg(fig,
-                               master=window)
-    canvas.draw()
 
-    # placing the canvas on the Tkinter window
-    canvas.get_tk_widget().pack()
+root = tkinter.Tk()
+root.wm_title("Embedding in Tk")
 
-    # creating the Matplotlib toolbar
-    toolbar = NavigationToolbar2Tk(canvas,
-                                   window)
-    toolbar.update()
+fig = Figure(figsize=(5, 4), dpi=100)
+fig.add_subplot(111).plot(get_data())
 
-    # placing the toolbar on the Tkinter window
-    canvas.get_tk_widget().pack()
-# The main tkinter window
-window = Tk()
+canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
+canvas.draw()
+canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 
-# setting the title and
-window.title('Plotting in Tkinter')
+toolbar = NavigationToolbar2Tk(canvas, root)
+toolbar.update()
+canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 
-# setting the dimensions of
-# the main window
-window.geometry("500x500")
 
-# button that would displays the plot
-plot_button = Button(master=window,
-                     command=plot,
-                     height=2,
-                     width=10,
-                     text="Plot")
-# Set time period
-start = datetime(2000, 1, 1)
-end = datetime(2018, 12, 31)
+def on_key_press(event):
+    print("you pressed {}".format(event.key))
+    key_press_handler(event, canvas, toolbar)
 
-# Create Point for Vancouver, BC
-vancouver = Point(49.2497, -123.1193, 70)
 
-# Get daily data for 2018
-data = Daily(vancouver, start, end)
-data = data.fetch()
+canvas.mpl_connect("key_press_event", on_key_press)
 
-# Plot line chart including average, minimum and maximum temperature
-data.plot(y=['tavg', 'tmin', 'tmax'])
-plt.show()
 
-root.mainloop()
+def _quit():
+    root.quit()     # stops mainloop
+    root.destroy()  # this is necessary on Windows to prevent
+                    # Fatal Python Error: PyEval_RestoreThread: NULL tstate
+
+
+button = tkinter.Button(master=root, text="Quit", command=_quit)
+button.pack(side=tkinter.BOTTOM)
+
+tkinter.mainloop()
+# If you put root.destroy() here, it will cause an error if the window is
+# closed with the window manager.
+
