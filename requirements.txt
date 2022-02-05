@@ -1,0 +1,2 @@
+meteostat>=1.6
+matplotlib>=3.5
