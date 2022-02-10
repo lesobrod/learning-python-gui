@@ -6,6 +6,11 @@
 * Обработка ошибок, пропагация, исключения
 * Выкладка на Github (на примерах)
 * Раскрыть свою модель сезонов
+### Использовались паттерны и модели программинга:
+* Цепочка обязанностей
+https://refactoring.guru/ru/design-patterns/chain-of-responsibility
+
+
 ## Важные ресурсы
 https://pythonru.com/uroki/obuchenie-python-gui-uroki-po-tkinter
 
