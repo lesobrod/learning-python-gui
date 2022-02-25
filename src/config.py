@@ -3,7 +3,6 @@ class ResponseError(Exception):
     pass
 
 
-
 LOGGER_CONFIG = {
     "handlers": [
         {
