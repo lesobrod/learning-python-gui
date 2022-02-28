@@ -1,31 +1,3 @@
-
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@lesobrod
-lesobrod /
-samplemod
-Public template
-forked from navdeep-G/samplemod
-
-Code
-Pull requests
-Actions
-Projects
-Security
-Insights
-
-    Settings
-
-samplemod/.gitignore
-@jondot
-jondot add a Python gitignore
-Latest commit cb3a268 on 24 Oct 2016
-History
-1 contributor
-90 lines (72 sloc) 1.03 KB
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -116,19 +88,3 @@ ENV/
 
 # Rope project settings
 .ropeproject
-
-    © 2022 GitHub, Inc.
-
-    Terms
-    Privacy
-    Security
-    Status
-    Docs
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
-Loading complete
