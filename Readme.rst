@@ -19,7 +19,7 @@ https://geocode.xyz/?account=1
 * Moscow 2012, 2013
 * Karachi 2016
 
- `Sphinx <https://www.sphinx-doc.org/ru/master/index.html>`_
- `Unittest <https://docs.python.org/3/library/unittest.html>`_
- `Good reading <https://docs.python-guide.org/>`_
+ `Sphinx <https://www.sphinx-doc.org/ru/master/index.html>`_  
+ `Unittest <https://docs.python.org/3/library/unittest.html>`_  
+ `Good reading <https://docs.python-guide.org/>`_  
 
