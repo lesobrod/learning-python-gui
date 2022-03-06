@@ -1,4 +1,4 @@
-from gui_oop import show_gui
+from gui import show_gui
 from loguru import logger
 from config import LOGGER_CONFIG
 

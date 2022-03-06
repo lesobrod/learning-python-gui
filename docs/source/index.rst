@@ -1,5 +1,5 @@
 .. learning-python-gui documentation master file, created by
-   sphinx-quickstart on Fri Mar  4 13:33:47 2022.
+   sphinx-quickstart on Sun Mar  6 14:58:36 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

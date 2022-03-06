@@ -7,7 +7,11 @@ import http.client, urllib.parse
 import json
 
 
-def _get_point(location: str) -> tuple:
+def myf():
+    return 5
+
+
+def get_point(location: str) -> tuple:
     """
     Get GEO coords by name of location
     :param location: str name of location
@@ -52,7 +56,7 @@ def get_data(year: int, location: str) -> list:
 
     try:
         # Propagate errors to the top level
-        position = _get_point(location)
+        position = get_point(location)
     except ResponseError as e:
         raise ResponseError(e)
     except SystemExit as e:
