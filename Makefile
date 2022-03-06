@@ -1,5 +1,9 @@
+
 init:
 	pip install -r requirements.txt
 
+.PHONY: test
 test:
-	nosetests tests
+    PYTHONPATH = . pytest
+
+

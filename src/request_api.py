@@ -2,13 +2,10 @@ from datetime import datetime
 from loguru import logger
 import requests
 from meteostat import Point, Daily
-from config import GEOPOS_API_KEY, ResponseError
+# For PYTEST needed src.
+from src.config import GEOPOS_API_KEY, ResponseError
 import http.client, urllib.parse
 import json
-
-
-def myf():
-    return 5
 
 
 def get_point(location: str) -> tuple:
