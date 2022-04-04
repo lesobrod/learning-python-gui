@@ -24,12 +24,13 @@ NORTH_PACK_PARAMS = {'side': 'right',
                      'pady': 10,
                      'anchor': 'nw'}
 GUI_SIZE = "700x600"
-ENTRY_COLOR = "#bfbfbf"
+ENTRY_COLOR = "#ffffff"
 ENTRY_FONT = "Helvetica 12"
 BUTTON_COLOR = "#a3aed9"
+BUTTON_FONT = "Helvetica 14 bold"
 BACK_COLOR = "#c9ccd6"
 GUI_TITLE = "What are seasons?"
-WELCOME_MESSAGE = 'Bla bla bal bla labba lab ba'
+WELCOME_MESSAGE = 'Please enter year and location'
 
 MONTHS = ('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
           'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC',

@@ -32,7 +32,7 @@ def get_point(location: str) -> tuple:
         raise SystemExit(f'Unknown error: {e}')
     else:
         if "error" in res:
-            raise ResponseError(res["error"]["description"])
+            raise ResponseError(res["error"]["description"][2:])
 
         coords = tuple(map(lambda x: float(res.get(x)), ["latt", "longt"]))
         logger.info(f"Accepted coords: {coords}")
@@ -52,18 +52,15 @@ def get_data(year: int, location: str) -> list:
     end = datetime(year, 12, 31)
 
     try:
-        # Propagate errors to the top level
         position = get_point(location)
-    except ResponseError as e:
-        raise ResponseError(e)
-    except SystemExit as e:
-        raise SystemExit(e)
+    except (ResponseError, SystemExit) as e:
+        return [e]
 
     point = Point(*position)
     try:
         data = Daily(point, start, end)  # Pandas DataFrame
     except Exception as e:
-        SystemExit(f'Unknown error: {e}')
+        return [f'Unknown error: {e}']
     else:
         # Select 'tmin','tmax' colums from Pandas DataFrame
         # and put it in one day, filtering NAN etc.
@@ -71,7 +68,6 @@ def get_data(year: int, location: str) -> list:
         data = list(data.to_numpy().flatten())
         if len(data) < 200:
             # Too little correct data
-            print(data)
-            raise ResponseError("Too little correct data ")
+            return ["Too little correct data "]
         logger.info(f"Accepted data: {len(data)} positions")
         return data

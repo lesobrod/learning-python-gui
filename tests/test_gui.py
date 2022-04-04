@@ -7,7 +7,6 @@ import types
 генератор случайных чисел и смотрим, как это выглядит.
 Не обращаясь к API.
 Для данной замены нужен трюк с types.MethodType
-Этот файл запускается без pytest
 """
 
 
@@ -16,4 +15,6 @@ def rnd_data(self):
 
 test_root = MyApp()
 test_root.get_user_data = types.MethodType(rnd_data, test_root)
+test_root.info_label['text'] = 'TEST MODE'
 test_root.mainloop()
+
